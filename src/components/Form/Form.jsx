@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import s from './Form.module.css';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { addPhoneContact } from 'redux/contactSlice';
+import addContact from 'redux/contactSlice';
 
 export const Form = () => {
   const [name, setName] = useState('');
@@ -36,7 +35,7 @@ export const Form = () => {
       number,
     };
 
-    dispatch(addPhoneContact(newContactData));
+    dispatch(addContact(newContactData));
     setName('');
     setNumber('');
   };
@@ -65,7 +64,7 @@ export const Form = () => {
         value={number}
         onChange={handleChange}
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        title="  number must be digits and can contain spaces, dashes, parentheses and can start with +"
         id={nanoid()}
         required
       />
@@ -75,7 +74,4 @@ export const Form = () => {
   );
 };
 
-Form.propTypes = {
-  addPhoneContact: PropTypes.func,
-};
 
