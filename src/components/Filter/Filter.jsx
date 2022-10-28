@@ -10,7 +10,7 @@ export const Filter = () => {
   const dispatch = useDispatch();
   const handleFilterContactsByName = e => {
         const { value } = e.target;
-        dispatch(onChange(value));
+        dispatch(onChange(value.toLowerCase()));
       };
   return (
     <>
