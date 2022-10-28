@@ -3,13 +3,16 @@ import { fetchContacts, deleteContact, addContact } from './contactsOperations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: { contacts: [], isLoading: false, error: null },
+  initialState: { items: [], isLoading: false, error: null },
   extraReducers: {
     [fetchContacts.pending]: state => {
       state.isLoading = true;
     },
     [fetchContacts.fulfilled]: (state, { payload }) => {
+     
       state.items = payload;
+      // state.items = [...state.items, payload];
+      console.log(payload);
       state.isLoading = false;
     },
     [fetchContacts.rejected]: (state, { payload }) => {
@@ -41,4 +44,5 @@ const contactsSlice = createSlice({
   },
 });
 
-export default contactsSlice.reducer;
+export const contactsReducer = contactsSlice.reducer;
+

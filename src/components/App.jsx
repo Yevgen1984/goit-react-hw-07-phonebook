@@ -3,12 +3,14 @@ import { Section } from './Section/Section';
 import { ContactList } from './PhoneList/PhoneList';
 import { Filter } from './Filter/Filter';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contactsOperations';
+import {fetchContacts} from 'redux/contactsOperations';
 import { useDispatch } from 'react-redux';
 
 export const App = () => {
-  const dispatch = useDispatch()
-  useEffect(()=> {dispatch(fetchContacts())},[dispatch])
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, []);
   return (
     <>
       <Section title="PhoneContact">

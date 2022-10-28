@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://635a918b38725a1746ca3a6e.mockapi.io/';
+axios.defaults.baseURL = 'https://635a918b38725a1746ca3a6e.mockapi.io';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchContacts',
   async (_, { rejectWithValue }) => {
     try {
+      
       const { data } = await axios('/contacts');
+    console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error);
