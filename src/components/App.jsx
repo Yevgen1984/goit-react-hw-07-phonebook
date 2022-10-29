@@ -5,7 +5,6 @@ import { Form } from './Form/Form';
 import { Section } from './Section/Section';
 import { ContactList } from './PhoneList/PhoneList';
 import { Filter } from './Filter/Filter';
-import { Loader } from './Loader';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ export const App = () => {
       </Section>
       <Section title="Contacts">
         <Filter />
-        <ContactList Loader={Loader}/>
+        <ContactList/>
       </Section>
     </>
   );

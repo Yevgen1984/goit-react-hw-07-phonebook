@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import s from './Form.module.css';
-import { useDispatch } from 'react-redux';
-import {addContact} from 'redux/contactsOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsOperations';
+import { selectContacts } from '../../redux/contactsSelector';
 
 export const Form = () => {
   const [name, setName] = useState('');
@@ -26,6 +27,7 @@ export const Form = () => {
         return;
     }
   };
+  const oldContacts = useSelector(selectContacts);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -34,6 +36,16 @@ export const Form = () => {
       name,
       number,
     };
+
+    if (
+      oldContacts.some(
+        contact =>
+          contact.name.toLowerCase() === newContactData.name.toLowerCase()
+      )
+    ) {
+      alert(`contact with ${newContactData.name} has already been created`);
+      return;
+    }
 
     dispatch(addContact(newContactData));
     setName('');
@@ -73,5 +85,3 @@ export const Form = () => {
     </form>
   );
 };
-
-
